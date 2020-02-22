@@ -1,0 +1,126 @@
+Grammar
+
+    0 $accept: S $end
+
+    1 S: A B
+
+    2 A: 'a' A 'b'
+    3  | %empty
+
+    4 B: 'b' B 'c'
+    5  | %empty
+
+
+Terminals, with rules where they appear
+
+$end (0) 0
+'a' (97) 2
+'b' (98) 2 4
+'c' (99) 4
+error (256)
+
+
+Nonterminals, with rules where they appear
+
+$accept (6)
+    on left: 0
+S (7)
+    on left: 1, on right: 0
+A (8)
+    on left: 2 3, on right: 1 2
+B (9)
+    on left: 4 5, on right: 1 4
+
+
+State 0
+
+    0 $accept: . S $end
+
+    'a'  shift, and go to state 1
+
+    $default  reduce using rule 3 (A)
+
+    S  go to state 2
+    A  go to state 3
+
+
+State 1
+
+    2 A: 'a' . A 'b'
+
+    'a'  shift, and go to state 1
+
+    $default  reduce using rule 3 (A)
+
+    A  go to state 4
+
+
+State 2
+
+    0 $accept: S . $end
+
+    $end  shift, and go to state 5
+
+
+State 3
+
+    1 S: A . B
+
+    'b'  shift, and go to state 6
+
+    $default  reduce using rule 5 (B)
+
+    B  go to state 7
+
+
+State 4
+
+    2 A: 'a' A . 'b'
+
+    'b'  shift, and go to state 8
+
+
+State 5
+
+    0 $accept: S $end .
+
+    $default  accept
+
+
+State 6
+
+    4 B: 'b' . B 'c'
+
+    'b'  shift, and go to state 6
+
+    $default  reduce using rule 5 (B)
+
+    B  go to state 9
+
+
+State 7
+
+    1 S: A B .
+
+    $default  reduce using rule 1 (S)
+
+
+State 8
+
+    2 A: 'a' A 'b' .
+
+    $default  reduce using rule 2 (A)
+
+
+State 9
+
+    4 B: 'b' B . 'c'
+
+    'c'  shift, and go to state 10
+
+
+State 10
+
+    4 B: 'b' B 'c' .
+
+    $default  reduce using rule 4 (B)
