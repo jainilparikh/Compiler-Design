@@ -12,7 +12,7 @@
 %token ALPHA
 %left '|'
 %left '.'
-%nonassoc '*' '+'
+%nonassoc '*' '+'   // no need to have associativity as they are not operators
 
 %%
 S : re {

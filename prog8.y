@@ -9,10 +9,10 @@ char temp[2]="t";
 %token ID NUM
 %right '='
 %left '+''-'
-%left '*''/'
-%left UMINUS
+%left '*''/'  //  Second Highest precedence
+%left UMINUS  // Unary Minus  Highest precendence
 %%
-S:ID{push();}'='{push();}E{codegen_assign();}
+S:ID{push();}'='{push();}E{codegen_assign();}  //   Let us assume the expression z = b*c - d
 ;
 E:E '+'{push();}T{codegen();}
 |E'-' {push();}T{codegen();}
@@ -41,9 +41,9 @@ void push(){
 void codegen(){
 	strcpy(temp,"t");
 	strcat(temp,i_);
-	printf("%s=%s%s%s\n",temp,st[top-2],st[top-1],st[top]);
+	printf("%s=%s%s%s\n",temp,st[top-2],st[top-1],st[top]); // prints t0 = B *C
 	top-=2;
-	strcpy(st[top],temp);
+	strcpy(st[top],temp); // the third element on the top of the stack is replaced by temp variable
 	i_[0]++;
 }
 

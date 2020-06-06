@@ -59,8 +59,8 @@ codegen()
     strcat(temp,i_);
     printf("%s = %s %s %s\n",temp,st[top-2],st[top-1],st[top]);
     top-=2;
-    strcpy(st[top],temp);
-    i_[0]++;
+    strcpy(st[top],temp);     // Temporary on stack
+    i_[0]++;    // Increment t0 to t1 to t2 ...
 }
 
 codegen_umin()
@@ -89,13 +89,13 @@ lab2()
     printf("%s = not %s\n",temp,st[top]);
     printf("if %s goto L%d\n",temp,lno);
     i_[0]++;
-    label[++ltop]=lno;
-    lno++;
+    label[++ltop]=lno;   // Saving labels
+    lno++;                // next label
     printf("goto L%d\n",lno);
     label[++ltop]=lno;
     printf("L%d: \n",++lno);
  }
-lab3()
+lab3()  //  FOr i++ part
 {
     int x;
     x=label[ltop--];
@@ -104,10 +104,10 @@ lab3()
    
 }
 
-lab4()
+lab4()  // INside For Loop
 {
     int x;
-    x=label[ltop--];
+    x=label[ltop--];    // It will give L2  
     printf("goto L%d \n",lno);   
     printf("L%d: \n",x);
 }

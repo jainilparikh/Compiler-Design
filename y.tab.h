@@ -45,19 +45,15 @@ extern int yydebug;
 # define YYTOKENTYPE
   enum yytokentype
   {
-    equal = 258,
+    ID = 258,
     NUM = 259,
-    INCREMENT = 260,
-    ALPHA = 261,
-    FOR = 262
+    UMINUS = 260
   };
 #endif
 /* Tokens.  */
-#define equal 258
+#define ID 258
 #define NUM 259
-#define INCREMENT 260
-#define ALPHA 261
-#define FOR 262
+#define UMINUS 260
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
